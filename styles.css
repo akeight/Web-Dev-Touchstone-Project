@@ -114,6 +114,7 @@ h2 {
   font-family: 'Times New Roman', serif;
   font-size: 30px;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 h3 {
@@ -122,6 +123,7 @@ h3 {
   font-family: 'Impact', sans-serif;
   font-size: 25px;
   font-weight: bold;
+  margin-bottom: 5px;
 }
 
 p {
@@ -129,6 +131,8 @@ p {
   justify-content: center;
   font-family: 'Calibiri Normal', sans-serif;
   font-size: 20px;
+  text-align: center;
+  margin-bottom: 5px;
 }
 
 .addToCart,
@@ -290,8 +294,13 @@ image {
   }
 }
 
-main {
-  display: contents;
+table {
+  justify-content: center;
+  align-items: center;
+}
+
+thead {
+  justify-content: center;
 }
 
 .feedback-form {
