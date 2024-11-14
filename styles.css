@@ -178,8 +178,8 @@ form {
   content: flex;
   flex-direction: column;
   justify-content: right;
-  margin-right: none;
-  margin-left: 60px;
+  margin-right: 100px;
+  margin-left: 100px;
 }
 
 .promos,
@@ -295,16 +295,16 @@ image {
 }
 
 table {
-  justify-content: center;
-  align-items: center;
-}
-
-thead {
-  justify-content: center;
+  text-align: center;
+  margin-left: 100px;
+  margin-right: 100px;
 }
 
 .feedback-form {
+  display: flex;
   box-sizing: border-box;
+  justify-content: center;
+  align-content: center;
   align-items: center;
-  width: 50%;
+  width: 350px;
 }

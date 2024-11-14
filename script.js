@@ -23,13 +23,19 @@ document.addEventListener("DOMContentLoaded", () => {
     console.log("button clicked");
   });
 
+  // Close modal from the modal X button
+  btnCloseModal.addEventListener("click", () => {
+    modal.classList.add("hidden");
+    console.log("button clicked");
+  });
+
   // Add event listeners to add product buttons
   document.querySelectorAll(".addToCart").forEach((button) => {
     button.addEventListener("click", () => {
       const product = button.parentElement;
       const productName = product.querySelector("p").textContent;
       cart.push(productName);
-      alert("Item added!");
+      alert("Item added to the cart");
     });
   });
 
@@ -63,7 +69,7 @@ document.addEventListener("DOMContentLoaded", () => {
           cartItemsDiv.innerHTML = "";
         }
       } else {
-        alert("No items to clear!");
+        alert("No items to clear");
       }
     });
   }
@@ -73,7 +79,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (processOrderButton) {
     processOrderButton.addEventListener("click", () => {
       if (cart.length > 0) {
-        alert("Thank you for your order!");
+        alert("Thank you for your order");
         cart = [];
         const cartItemsDiv = document.querySelector(".cart-items");
         if (cartItemsDiv) {
@@ -81,37 +87,36 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         modal.classList.add("hidden");
       } else {
-        alert("Cart is empty!");
+        alert("Cart is empty");
       }
     });
   }
 
   // Feedback form submission
-  const feedbackForm = document.getElementById("feedback-form");
+  const feedbackForm = document.querySelector(".feedback-form");
   if (feedbackForm) {
-    feedbackForm.addEventListener("submit", (event) => {
+    feedbackForm.addEventListener("click", (event) => {
       event.preventDefault();
-      const nameInput = document.getElementById("Name");
-      const emailInput = document.getElementById("Email");
-      const messageInput = document.getElementById("Message");
+      const customerName = document.getElementById("name");
+      const customerEmail = document.getElementById("email");
+      const customerMessage = document.getElementById("message");
 
       // Check if any field is empty
       if (
-        (nameInput.value.trim() === "",
-        emailInput.value.trim() === "",
-        messageInput.value.trim() === "")
+        (customerName.value.trim() === "",
+        customerEmail.value.trim() === "",
+        customerMessage.value.trim() === "")
       );
       {
         alert("Please include your name, email, and message.");
-        return; // Stop further execution
+        return;
       }
 
-      const formData = new FormData(event.target);
-      console.log(
-        "Feedback submitted:",
-        Object.fromEntries(formData.entries())
+      const formInput = new FormInput(event.target);
+      console.log("Feedback submitted:",
+        Object.FormInput(formInput.entries())
       );
-      alert("Thank you for your message! We will get back to you shortly!");
+      alert("Thank you for your message");
       event.target.reset();
     });
   }
@@ -120,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const subscribeButton = document.querySelector(".subscribe-button");
   if (subscribeButton) {
     subscribeButton.addEventListener("click", () => {
-      alert("Thanks for subscribing!");
+      alert("Thank you for subscribing");
     });
   }
 
