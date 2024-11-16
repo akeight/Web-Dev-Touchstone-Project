@@ -1,5 +1,5 @@
-  // Shopping Cart functionality
-  let cart = [];
+  //Get the cart items from sessionStorage, or initialize as an empty array.
+  var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 
   // Variables for view cart modal
   const modal = document.querySelector(".hidden");
@@ -20,20 +20,21 @@
   btnsOpenModal.addEventListener("click", () => {
     modal.classList.remove("hidden");
     console.log("button clicked");
-  });
+  }); */
 
   // Close modal from the modal X button
   btnCloseModal.addEventListener("click", () => {
     modal.classList.add("hidden");
     console.log("button clicked");
-  }); */
+  }); 
 
   // Add event listeners to add product buttons
   document.querySelectorAll(".addToCart").forEach((button) => {
     button.addEventListener("click", () => {
       const product = button.parentElement;
       const productName = product.querySelector("p").textContent;
-      cart.push(productName);
+      cartItems.push(productName);
+      sessionStorage.setItem("cartItems", JSON.stringify(cartItems));
       alert("Item added to the cart");
     });
   });
@@ -46,7 +47,7 @@
       if (cartModal) {
         const cartItemsDiv = cartModal.querySelector(".cart-items");
         cartItemsDiv.innerHTML = "";
-        cart.forEach((item) => {
+        cartItems.forEach((item) => {
           const itemDiv = document.createElement("div");
           itemDiv.textContent = item;
           cartItemsDiv.appendChild(itemDiv);
@@ -59,10 +60,11 @@
   const clearCartButton = document.querySelector(".clear-cart");
   if (clearCartButton) {
     clearCartButton.addEventListener("click", () => {
-      if (cart.length > 0) {
+      if (cartItems.length > 0) {
         alert("Cart cleared");
         modal.classList.add("hidden");
-        cart = [];
+        cartItems = [];
+        sessionStorage.removeItem("cartItems");
         const cartItemsDiv = document.querySelector(".cart-items");
         if (cartItemsDiv) {
           cartItemsDiv.innerHTML = "";
@@ -77,9 +79,10 @@
   const processOrderButton = document.querySelector(".process-order");
   if (processOrderButton) {
     processOrderButton.addEventListener("click", () => {
-      if (cart.length > 0) {
+      if (cartItems.length > 0) {
         alert("Thank you for your order");
-        cart = [];
+        cartItems = [];
+        sessionStorage.removeItem("cartItems");
         const cartItemsDiv = document.querySelector(".cart-items");
         if (cartItemsDiv) {
           cartItemsDiv.innerHTML = "";
@@ -111,6 +114,7 @@
       alert("Thank you for your message, "+ who.name +"!");
       }
 
+      
 // Display of products on home page to be responsive
 const panels = document.querySelectorAll(".panel");
 
