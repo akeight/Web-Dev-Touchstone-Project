@@ -59,16 +59,21 @@
           </table> 
         </h2>
       </section>
-      <section class="feedback">
+      <section class="feedback gap-2 flex-sm-column">
         <h3>Feedback and Custom Orders</h3>
-          <form class="feedback-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button class="submit" type="submit">Submit</button>
+          <form class="feedback-form" autocomplete="on">
+            <label>Name:
+              <input type="text" id="name" name="name" required></label>
+            <label>Phone: 
+                <input type="tel" id="phone" name="phone"/></label>  
+            <label>Email:
+              <input type="email" id="email" name="email" required></label>
+            <label>Message:
+              <textarea id="message" name="message" cols="35" rows="3" required></textarea></label>
+            <label>Custom Order: 
+              <input type="checkbox" name="customOrder" id="custom-order"/></label>
+            <input type="button" class="submit" onclick="submitForm()" value="Submit" />
+            <input type="reset" class="clear-form" value="Clear Form"/>
           </form>
       </section>
       <hr>
@@ -119,7 +124,7 @@
                       class="form-control"
                       placeholder="Email address"
                     />
-                  <button class="btn btn-primary" type="button">Subscribe</button>
+                  <button class="subSubmit" type="button">Subscribe</button>
                 </div>
               </form>
           </div>

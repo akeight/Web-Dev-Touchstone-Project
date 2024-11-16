@@ -1,4 +1,3 @@
-document.addEventListener("DOMContentLoaded", () => {
   // Shopping Cart functionality
   let cart = [];
 
@@ -17,7 +16,7 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("hidden");
   };
 
-  // Open modal from view shopping cart
+  /* Open modal from view shopping cart
   btnsOpenModal.addEventListener("click", () => {
     modal.classList.remove("hidden");
     console.log("button clicked");
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
   btnCloseModal.addEventListener("click", () => {
     modal.classList.add("hidden");
     console.log("button clicked");
-  });
+  }); */
 
   // Add event listeners to add product buttons
   document.querySelectorAll(".addToCart").forEach((button) => {
@@ -93,80 +92,24 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Feedback form submission
-  const feedbackForm = document.querySelector(".feedback-form");
-  if (feedbackForm) {
-    feedbackForm.addEventListener("click", (event) => {
-      event.preventDefault();
-      const customerName = document.getElementById("name");
-      const customerEmail = document.getElementById("email");
-      const customerMessage = document.getElementById("message");
+ function submitForm(){
+      const name = document.getElementById("name").value;
+      const email = document.getElementById("email").value;
+      const phone = document.getElementById("phone").value;
+      const feedback = document.getElementById("message").value;
+      const customOrder = document.getElementById("custom-order").checked;
+      const customerInfo = {
+             name, email, phone, feedback, customOrder
+     };
+     const keyValue = name;
 
-      // Check if any field is empty
-      if (
-        (customerName.value.trim() === "",
-        customerEmail.value.trim() === "",
-        customerMessage.value.trim() === "")
-      );
-      {
-        alert("Please include your name, email, and message.");
-        return;
+     //save customer information to localStorage
+      localStorage.setItem(keyValue, JSON.stringify(customerInfo));
+
+      //access and parse local data back out of localStorage. 
+      const who = JSON.parse( localStorage.getItem(name) );
+      alert("Thank you for your message, "+ who.name +"!");
       }
-
-      const formInput = new FormInput(event.target);
-      console.log("Feedback submitted:",
-        Object.FormInput(formInput.entries())
-      );
-      alert("Thank you for your message");
-      event.target.reset();
-    });
-  }
-
-  // Subscription functionality
-  const subscribeButton = document.querySelector(".subscribe-button");
-  if (subscribeButton) {
-    subscribeButton.addEventListener("click", () => {
-      alert("Thank you for subscribing");
-    });
-  }
-
-  // Store data in local storage as JSON
-  const userData = {
-    username: "Ally Keightley",
-    email: "allysonkeightley@outlook.com",
-    message:
-      "Hello! I am looking for some peonies to plant this fall. Do you have any in stock?",
-  };
-
-  localStorage.setItem("userData", JSON.stringify(userData));
-
-  // Retrieve data from local storage and parse it back to an object
-  const storedUserData = JSON.parse(localStorage.getItem("userData"));
-  console.log("User Data from Local Storage:", storedUserData);
-
-  // Store data in session storage as JSON
-  const sessionData = {
-    sessionID: "123456",
-    groups: ["GroupYoga", "GroupKickBoxing", "GroupPilates"],
-  };
-
-  sessionStorage.setItem("sessionData", JSON.stringify(sessionData));
-
-  // Retrieve data from session storage and parse it back to an object
-  const storedSessionData = JSON.parse(sessionStorage.getItem("sessionData"));
-  console.log("Session Data from Session Storage:", storedSessionData);
-
-  // Display local storage data on the webpage
-  document.getElementById("localStorageData").textContent = JSON.stringify(
-    storedUserData,
-    2
-  );
-
-  // Display session storage data on the webpage
-  document.getElementById("sessionStorageData").textContent = JSON.stringify(
-    storedSessionData,
-    2
-  );
-});
 
 // Display of products on home page to be responsive
 const panels = document.querySelectorAll(".panel");

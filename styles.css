@@ -137,7 +137,7 @@ p {
 
 .addToCart,
 .show-modal,
-.submit {
+.submit, .subSubmit, .clear-form {
   border: none;
   color: #00231c;
   padding: 10px 20px;
@@ -168,7 +168,7 @@ p {
   cursor: pointer;
 }
 
-.submit {
+.submit, .subSubmit {
   background-color: #00231c;
   color: #f7f7f7;
 }
@@ -305,6 +305,27 @@ table {
   box-sizing: border-box;
   justify-content: center;
   align-content: center;
-  align-items: center;
-  width: 350px;
+  align-items: start;
+  gap: 5px;
+  margin-left: 40%;
+}
+
+input, textarea {
+  display: block;
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 9px;
+  margin: 8px 0;
+  box-sizing: border-box;
+}
+
+input:focus {
+  border: 2px solid #555;
+  outline: none;
+}
+
+label {
+  font-family: "Calibri Normal", sans-serif;
+  font-size: 16px;
 }
