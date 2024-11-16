@@ -1,8 +1,5 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Shopping Cart functionality
-  let cart = [];
-
-  // Variables for view cart modal
+   const cart = [];
+   // Variables for view cart modal
   const modal = document.querySelector(".hidden");
   const btnCloseModal = document.querySelector(".close-modal");
   const btnsOpenModal = document.querySelector(".show-modal");
@@ -17,17 +14,20 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.classList.add("hidden");
   };
 
-  // Open modal from view shopping cart
-  btnsOpenModal.addEventListener("click", () => {
-    modal.classList.remove("hidden");
-    console.log("button clicked");
-  });
 
   // Close modal from the modal X button
+  if (btnCloseModal) {
   btnCloseModal.addEventListener("click", () => {
     modal.classList.add("hidden");
     console.log("button clicked");
-  });
+  });}
+
+  // Add cart items to session storage
+  function addToCart(productName)
+  {
+     cart.push(productName);
+     sessionStorage.setItem("productName", JSON.stringify(cart));
+  }
 
   // Add event listeners to add product buttons
   document.querySelectorAll(".addToCart").forEach((button) => {
@@ -51,10 +51,13 @@ document.addEventListener("DOMContentLoaded", () => {
           const itemDiv = document.createElement("div");
           itemDiv.textContent = item;
           cartItemsDiv.appendChild(itemDiv);
+          addToCart;
         });
       }
     });
   }
+  
+ 
 
   // Clear cart functionality
   const clearCartButton = document.querySelector(".clear-cart");
@@ -62,8 +65,8 @@ document.addEventListener("DOMContentLoaded", () => {
     clearCartButton.addEventListener("click", () => {
       if (cart.length > 0) {
         alert("Cart cleared");
+        const cart = [];
         modal.classList.add("hidden");
-        cart = [];
         const cartItemsDiv = document.querySelector(".cart-items");
         if (cartItemsDiv) {
           cartItemsDiv.innerHTML = "";
@@ -80,7 +83,8 @@ document.addEventListener("DOMContentLoaded", () => {
     processOrderButton.addEventListener("click", () => {
       if (cart.length > 0) {
         alert("Thank you for your order");
-        cart = [];
+        sessionStorage.removeItem("cartItemsDiv");
+        displayCartItemsDiv();
         const cartItemsDiv = document.querySelector(".cart-items");
         if (cartItemsDiv) {
           cartItemsDiv.innerHTML = "";
@@ -93,80 +97,39 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Feedback form submission
-  const feedbackForm = document.querySelector(".feedback-form");
+  const feedbackForm = document.querySelector(".submitFeedback");
   if (feedbackForm) {
-    feedbackForm.addEventListener("click", (event) => {
-      event.preventDefault();
-      const customerName = document.getElementById("name");
-      const customerEmail = document.getElementById("email");
-      const customerMessage = document.getElementById("message");
-
-      // Check if any field is empty
-      if (
-        (customerName.value.trim() === "",
-        customerEmail.value.trim() === "",
-        customerMessage.value.trim() === "")
-      );
-      {
-        alert("Please include your name, email, and message.");
-        return;
-      }
-
-      const formInput = new FormInput(event.target);
-      console.log("Feedback submitted:",
-        Object.FormInput(formInput.entries())
-      );
+    feedbackForm.addEventListener("click", () => {
+      console.log("click");
       alert("Thank you for your message");
-      event.target.reset();
-    });
-  }
+    }); }
 
-  // Subscription functionality
-  const subscribeButton = document.querySelector(".subscribe-button");
-  if (subscribeButton) {
-    subscribeButton.addEventListener("click", () => {
+    //Create function of submit form for feedback form button
+    function submitForm()
+    {
+               const name = document.getElementById("fbName").value;
+               const email = document.getElementById("fbEmail").value;
+               const phone = document.getElementById("fbPhone").value;
+               const feedback = document.getElementById("fbFeedback").value;
+               const customOrder = document.getElementById("fbCustom-order").checked;
+               const customerInfo = {
+                       name, email, phone, feedback, customOrder
+               };
+               const keyValue = name;
+               //save customer information to localStorage
+               localStorage.setItem(keyValue, JSON.stringify(customerInfo));
+               //access and parse local data back out of localStorage. 
+               const who = JSON.parse( localStorage.getItem(name) );
+               alert("Thank you for your message, "+ who.name +"!");
+    }
+
+    
+// Subscription functionality
+const subsciptionForm = document.querySelector(".subscribeButton");
+    subsciptionForm.addEventListener("click", () => {
+      console.log("button clicked");
       alert("Thank you for subscribing");
     });
-  }
-
-  // Store data in local storage as JSON
-  const userData = {
-    username: "Ally Keightley",
-    email: "allysonkeightley@outlook.com",
-    message:
-      "Hello! I am looking for some peonies to plant this fall. Do you have any in stock?",
-  };
-
-  localStorage.setItem("userData", JSON.stringify(userData));
-
-  // Retrieve data from local storage and parse it back to an object
-  const storedUserData = JSON.parse(localStorage.getItem("userData"));
-  console.log("User Data from Local Storage:", storedUserData);
-
-  // Store data in session storage as JSON
-  const sessionData = {
-    sessionID: "123456",
-    groups: ["GroupYoga", "GroupKickBoxing", "GroupPilates"],
-  };
-
-  sessionStorage.setItem("sessionData", JSON.stringify(sessionData));
-
-  // Retrieve data from session storage and parse it back to an object
-  const storedSessionData = JSON.parse(sessionStorage.getItem("sessionData"));
-  console.log("Session Data from Session Storage:", storedSessionData);
-
-  // Display local storage data on the webpage
-  document.getElementById("localStorageData").textContent = JSON.stringify(
-    storedUserData,
-    2
-  );
-
-  // Display session storage data on the webpage
-  document.getElementById("sessionStorageData").textContent = JSON.stringify(
-    storedSessionData,
-    2
-  );
-});
 
 // Display of products on home page to be responsive
 const panels = document.querySelectorAll(".panel");

@@ -61,14 +61,20 @@
       </section>
       <section class="feedback">
         <h3>Feedback and Custom Orders</h3>
-          <form class="feedback-form">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            <button class="submit" type="submit">Submit</button>
+          <form class="feedback-form flex-sm-column" autocomplete="on">
+            <label>Name: 
+              <input type="text" name="name" id="fbName"/></label><br/>
+              <label>Email: 
+              <input type="email" name="email" id="fbEmail"/></label><br/>
+              <label>Phone: 
+              <input type="tel" name="phone" id="fbPhone"/></label><br/>
+              <label>Feedback: 
+              <textarea name="feedback" id="fbFeedback"></textarea></label><br/>
+              <label>Custom Order: 
+              <input class="checkbox justify-content-right" type="checkbox" name="customOrder" id="fbCustom-order"/></label><br/>
+              <br/>
+              <input type="button" class="submitFeedback" onclick="submitForm()" value="Submit"/>
+              <input type="reset" class="clearform" value="Clear Form"/>
           </form>
       </section>
       <hr>
@@ -98,13 +104,13 @@
             </div>
 
             <div class="col-md-5 offset-md-2 mb-3">
-              <form>
+              <form class="subscriptions">
                 <h5>Subscribe to the newsletter!</h5>
                 <div class="d-flex flex-column flex-end flex-sm-column w-100 gap-2">
                   <label for="newsletter1" class="visually-hidden"
                     >Email address</label>
                   <input
-                    id="newsletter1"
+                    id="subName"
                     type="text"
                     class="form-control"
                     placeholder="Name"
@@ -114,12 +120,12 @@
                       >Email address</label
                     >
                     <input
-                      id="newsletter1"
+                      id="subEmail"
                       type="text"
                       class="form-control"
                       placeholder="Email address"
                     />
-                  <button class="btn btn-primary" type="button">Subscribe</button>
+                  <button class="subscribeButton" type="button">Subscribe</button>
                 </div>
               </form>
           </div>
