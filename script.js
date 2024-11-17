@@ -20,13 +20,13 @@
   btnsOpenModal.addEventListener("click", () => {
     modal.classList.remove("hidden");
     console.log("button clicked");
-  }); */
+  });
 
   // Close modal from the modal X button
   btnCloseModal.addEventListener("click", () => {
     modal.classList.add("hidden");
     console.log("button clicked");
-  }); 
+  });  */
 
   // Add event listeners to add product buttons
   document.querySelectorAll(".addToCart").forEach((button) => {
@@ -114,7 +114,14 @@
       alert("Thank you for your message, "+ who.name +"!");
       }
 
-      
+      // // Subscription functionality
+      const subscribeButton = document.querySelector(".subSubmit");
+        if (subscribeButton) {
+          subscribeButton.addEventListener("click", () => {
+          alert("Thanks for subscribing!");
+         });
+  }
+
 // Display of products on home page to be responsive
 const panels = document.querySelectorAll(".panel");
 
