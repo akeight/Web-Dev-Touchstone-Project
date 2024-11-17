@@ -1,4 +1,4 @@
-  //Get the cart items from sessionStorage, or initialize as an empty array.
+  //Get items from session storage OR empty array.
   var cartItems = JSON.parse(sessionStorage.getItem("cartItems")) || [];
 
   // Variables for view cart modal
@@ -20,15 +20,15 @@
   btnsOpenModal.addEventListener("click", () => {
     modal.classList.remove("hidden");
     console.log("button clicked");
-  });
+  });  */
 
   // Close modal from the modal X button
   btnCloseModal.addEventListener("click", () => {
     modal.classList.add("hidden");
     console.log("button clicked");
-  });  */
+  }); 
 
-  // Add event listeners to add product buttons
+  // Add items to cart and session storage
   document.querySelectorAll(".addToCart").forEach((button) => {
     button.addEventListener("click", () => {
       const product = button.parentElement;
@@ -39,7 +39,7 @@
     });
   });
 
-  // Check if the view cart button exists before adding the event listener
+  // add items to modal
   if (btnsOpenModal) {
     btnsOpenModal.addEventListener("click", () => {
       modal.classList.remove("hidden");
@@ -56,7 +56,7 @@
     });
   }
 
-  // Clear cart functionality
+  // Clear cart 
   const clearCartButton = document.querySelector(".clear-cart");
   if (clearCartButton) {
     clearCartButton.addEventListener("click", () => {
@@ -75,7 +75,7 @@
     });
   }
 
-  // Process order functionality
+  // Process order
   const processOrderButton = document.querySelector(".process-order");
   if (processOrderButton) {
     processOrderButton.addEventListener("click", () => {
@@ -104,17 +104,18 @@
       const customerInfo = {
              name, email, phone, feedback, customOrder
      };
+    
      const keyValue = name;
 
      //save customer information to localStorage
       localStorage.setItem(keyValue, JSON.stringify(customerInfo));
 
-      //access and parse local data back out of localStorage. 
+      //get and parse local data out of localStorage. 
       const who = JSON.parse( localStorage.getItem(name) );
       alert("Thank you for your message, "+ who.name +"!");
       }
 
-      // // Subscription functionality
+      // // Subscription 
       const subscribeButton = document.querySelector(".subSubmit");
         if (subscribeButton) {
           subscribeButton.addEventListener("click", () => {
